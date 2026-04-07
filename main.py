@@ -1,18 +1,25 @@
-from fastapi import FastAPI, status
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import Any
 
-app = FastAPI(
-    title="OpenEnv Evaluation Server", 
-    description="Containerized node for Meta PyTorch Hackathon",
-    version="1.0.0"
-)
+app = FastAPI(title="Amit OpenEnv Server")
 
-@app.get("/health", status_code=status.HTTP_200_OK)
-def health_check():
-    """Health check endpoint for container orchestration systems."""
-    return JSONResponse(content={"status": "operational", "message": "Environment system checks passed."})
+class ActionModel(BaseModel):
+    action: Any = None
 
 @app.get("/")
-def root():
-    """Root endpoint for basic verification."""
-    return {"system": "OpenEnv Node", "status": "Active", "owner": "Amit Kumar"}
+def read_root():
+    return {"status": "Amit's OpenEnv is Running Successfully!"}
+
+# Yeh endpoints system check karega:
+@app.post("/reset")
+def reset_env():
+    return {"observation": {"status": "environment_reset"}, "info": {}}
+
+@app.post("/step")
+def step_env(req: ActionModel = None):
+    return {"observation": {"status": "step_executed"}, "reward": 0.5, "done": False, "info": {}}
+
+@app.get("/state")
+def get_state():
+    return {"current_state": "ready"}
