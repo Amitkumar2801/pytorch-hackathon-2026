@@ -15,3 +15,6 @@ dependencies = [
     "openenv",
     "torch"
 ]
+
+[project.scripts]
+server = "server.app:app"
