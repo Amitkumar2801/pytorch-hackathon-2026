@@ -1,1 +1,16 @@
+version: "1.0.0"
+metadata:
+  name: "Amit-AI-Assistant-Env"
+  description: "A real-world task environment for Meta Hackathon"
+  author: "Amit Kumar"
 
+tasks:
+  - id: "task_1"
+    name: "Easy Task"
+    description: "Start the environment"
+  - id: "task_2"
+    name: "Medium Task"
+    description: "Process basic data"
+  - id: "task_3"
+    name: "Hard Task"
+    description: "Final optimization"
